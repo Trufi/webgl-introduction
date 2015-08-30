@@ -17,13 +17,11 @@
 	<section class="slide"><div>
 		<h2>WebGL</h2>
 		<ol>
-			<li>Обрезанный вариант обрезанного OpenGL ES 2.0</li>
-			<li class="next">Использует контекст canvas</span></li>
-			<li class="next">Язык GLSL для написания шейдеров</span></li>
-			<li class="next">Рисует 3D? <span class="next">На самом деле нет</span></li>
-			<li class="next">Но умеет рисовать треугольники</li>
+			<li>Немного урезанный вариант OpenGL ES 2.0</li>
+			<li>Спецификация выпущена в 2011 году</li>
+			<li>Поддерживается Kronos Group</li>
+			<li>Для работы использует контекст canvas</li>
 		</ol>
-	</div></section>
 	</div></section>
 	<section class="slide"><div>
 		<h2>Работает у 81% пользователей</h2>
@@ -32,19 +30,79 @@
 	<section class="slide"><div>
 		<h2>Сложности</h2>
 		<ol>
-			<li>Не просто освоить</li>
-			<li>Производительность кода > качества кода</li>
-			<li>Дебаг уровня "ниже Фортрана"</li>
+			<li>Большой порог вхождения</li>
+			<li>Низкоуровневый API</li>
+			<li>Невозможно дебажить</li>
 		</ol>
 	</div></section>
+	<section class="slide"><div>
+        <h2>WebGL</h2>
+        <ol>
+            <li>Рисует 3D? <span class="next">На самом деле нет</span></li>
+            <li class="next">Умеет рисовать треугольники</li>
+            <li class="next">Очень быстро и очень много треугольников</li>
+            <li class="next">Для отрисовки используются шейдеры</li>
+        </ol>
 	</div></section>
 	<section class="slide"><div>
 		<h2>Шейдеры</h2>
-		<ol>
-			<li>Вершинный</li>
-			<li>Фрагментный</li>
-		</ol>
+        <ol>
+            <li>Это программа</li>
+            <li>Выполняется на ведиокарте</li>
+            <li>Использует язык GLSL</li>
+            <li>Есть два вида шейдеров: вершинный и фрагментный</li>
+        </ol>
 	</div></section>
+	<section class="slide"><div>
+		<h2>Vertex Shader</h2>
+        <p>Преобразовывает координаты вершин</p>
+        <img style="margin-left: 100px;" src="pictures/vert_shader.svg" alt=""/>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Fragment Shader</h2>
+        <p>Преобразовывает цвет пикселей</p>
+        <img src="pictures/frag_shader.svg" alt=""/>
+	</div></section>
+	<section class="slide" id="drawCube"><div>
+		<h2>Рисуем кубик</h2>
+        <img class="place l" src="pictures/drawing.svg" width="200" alt=""/>
+        <div class="next">
+            <img class="place l" src="pictures/arrow.svg" width="100" alt=""/>
+            <img class="place l" src="pictures/drawing2.svg" width="200" alt=""/>
+        </div>
+        <style>
+            #drawCube img:nth-child(2) {
+                margin-left: 120px;
+            }
+            #drawCube div div img:nth-child(1) {
+                margin-left: 380px;
+            }
+            #drawCube div div img:nth-child(2) {
+                margin-left: 530px;
+            }
+        </style>
+	</div></section>
+    <section class="slide" id="triangle"><div>
+        <h2>Рисуем кубик</h2>
+        <img class="place l" src="pictures/triangle1.svg" alt=""/>
+        <img class="place l next" src="pictures/triangle2.svg" alt=""/>
+        <img class="place l next" src="pictures/triangle3.svg" alt=""/>
+        <pre class="next place r" style="margin-right: 120px;">
+            <code>[[0, 0], [1, 0], [0, 1]]</code>
+            <code>[[0, 0], [1, 0], [0, 1]]</code>
+            <span class="next">
+                ->
+                <code>[0, 0, 1, 0, 0, 1,
+  0, 0, 1, 0, 0, 1]</code>
+            </span>
+        </pre>
+
+        <style>
+            #triangle img {
+                margin-left: 120px;
+            }
+        </style>
+    </div></section>
 	<section class="slide"><div>
 		<h2>Shower Key Features</h2>
 		<ol>
