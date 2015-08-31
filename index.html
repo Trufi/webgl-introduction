@@ -69,9 +69,9 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 document.body.appendChild(canvas);
 
-var gl = canvas.getContext('webgl');
+<span class="next">var gl = canvas.getContext('webgl');
 gl.viewport(0, 0, window.innerWidth,
-  window.innerHeight);</code></pre>
+  window.innerHeight);</span></code></pre>
 
 	</div></section>
 	<section class="slide" id="drawCube"><div>
@@ -137,9 +137,9 @@ gl.viewport(0, 0, window.innerWidth,
 	<section class="slide"><div>
 		<h2>Буфер вершин</h2>
         <pre><code>var positionBuffer = gl.createBuffer();
-gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
-gl.bufferData(gl.ARRAY_BUFFER,
-    new Float32Array(vertices), gl.STATIC_DRAW);</code></pre>
+<span class="next">gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);</span>
+<span class="next">gl.bufferData(gl.ARRAY_BUFFER,
+    new Float32Array(vertices), gl.STATIC_DRAW);</span></code></pre>
 	</div></section>
 	<section class="slide"><div>
         <h2>Цвет</h2>
@@ -174,7 +174,7 @@ gl.bufferData(gl.ARRAY_BUFFER,
     <section class="slide"><div>
         <h2>Матрица перспективы</h2>
         <img src="pictures/perspective.svg" width="300" alt=""/>
-        <pre class="place l" style="margin: 0 0 0 450px; font-size: 23px;"><code>var pMatrix = mat4.create();
+        <pre class="next place l" style="margin: 0 0 0 450px; font-size: 23px;"><code>var pMatrix = mat4.create();
 mat4.perspective(pMatrix, 45,
  window.innerWidth / window.innerHeight,
  0.1, 1000);
@@ -182,22 +182,22 @@ mat4.translate(pMatrix, pMatrix,
  [0, 0, -5]);</code></pre>
     </div></section>
 	<section class="slide"><div>
-		<h2>Vertex shader</h2>
+		<h2>Vertex Shader</h2>
         <pre><code style="font-size: 22px; line-height:27px;">attribute vec3 position;
 attribute vec3 color;
 
-uniform mat4 pMatrix;
-uniform mat4 mvMatrix;
+<span class="next">uniform mat4 pMatrix;
+uniform mat4 mvMatrix;</span>
 
-varying vec3 v_color;
+<span class="next">varying vec3 v_color;
 
 void main(void) {
   v_color = color;
   gl_Position = pMatrix * mvMatrix * vec4(position, 1.0);
-}</code></pre>
+}</span></code></pre>
 	</div></section>
 	<section class="slide"><div>
-		<h2>Fragment shader</h2>
+		<h2>Fragment Shader</h2>
         <pre><code style="font-size: 22px; line-height:27px;">precision mediump float;
 
 varying vec3 v_color;
@@ -226,24 +226,24 @@ gl.attachShader(program, vertexShader);
 gl.attachShader(program, fragmentShader);
 gl.linkProgram(program);
 
-var pMatrixUniform = gl.getUniformLocation(program, 'pMatrix');
+<span class="next">var pMatrixUniform = gl.getUniformLocation(program, 'pMatrix');
 var mvMatrixUniform = gl.getUniformLocation(program, 'mvMatrix');
 var positionAttribution = gl.getAttribLocation(program, 'position');
-var colorAttribution = gl.getAttribLocation(program, 'color');</code></pre>
+var colorAttribution = gl.getAttribLocation(program, 'color');</span></code></pre>
 	</div></section>
 	<section class="slide"><div>
         <h2>Render loop</h2>
             <pre><code style="font-size: 20px; line-height:30px;">requestAnimationFrame(render);
 
-mat4.rotateY(mvMatrix, mvMatrix, dt / 1000);
-mat4.rotateZ(mvMatrix, mvMatrix, dt / 1000);
+<span class="next">mat4.rotateY(mvMatrix, mvMatrix, dt / 1000);
+mat4.rotateZ(mvMatrix, mvMatrix, dt / 1000);</span>
 
-gl.clearColor(1.0, 1.0, 1.0, 1.0);
+<span class="next">gl.clearColor(1.0, 1.0, 1.0, 1.0);
 gl.enable(gl.DEPTH_TEST);
 
-gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);</span>
 
-gl.useProgram(program);</code></pre>
+<span class="next">gl.useProgram(program);</span></code></pre>
 	</div></section>
 	<section class="slide"><div>
         <h2>Render loop</h2>
@@ -255,16 +255,17 @@ gl.bindBuffer(gl.ARRAY_BUFFER, colorBuffer);
 gl.enableVertexAttribArray(colorAttribution);
 gl.vertexAttribPointer(colorAttribution, 3, gl.FLOAT, false, 0, 0);
 
-gl.uniformMatrix4fv(pMatrixUniform, false, pMatrix);
-gl.uniformMatrix4fv(mvMatrixUniform, false, mvMatrix);
+<span class="next">gl.uniformMatrix4fv(pMatrixUniform, false, pMatrix);
+gl.uniformMatrix4fv(mvMatrixUniform, false, mvMatrix);</span>
 
-gl.drawArrays(gl.TRIANGLES, 0, 36);</code></pre>
+<span class="next">gl.drawArrays(gl.TRIANGLES, 0, 36);</span></code></pre>
 	</div></section>
 	<section class="slide cover"><div>
         <iframe src="js/cube.html" style="width: 100%; height: 100%;" frameborder="0"></iframe>
 	</div></section>
 	<section class="slide"><div>
         <h2>Полезные ссылки</h2>
+        <p style="margin-bottom:25px;"><a href="http://www.youtube.com/watch?v=-P28LKWTzrI">GPU vs CPU</a></p>
         <ol>
             <li><a href="http://devburn.ru/webgl-%D1%83%D1%80%D0%BE%D0%BA-1-%D1%82%D1%80%D0%B5%D1%83%D0%B3%D0%BE%D0%BB%D1%8C%D0%BD%D0%B8%D0%BA-%D0%B8-%D0%BA%D0%B2%D0%B0%D0%B4%D1%80%D0%B0%D1%82/">Серия уроков WebGL learning</a></li>
             <li><a href="http://html5.by/blog/webgl-maps-video/">Доклад Агафонкина о mapbox-gl</a></li>
