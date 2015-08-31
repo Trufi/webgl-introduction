@@ -22,10 +22,8 @@
         uniform mat4 pMatrix;
         uniform mat4 mvMatrix;
         varying vec3 v_color;
-
         void main(void) {
             v_color = color;
-
             gl_Position = pMatrix * mvMatrix * vec4(position, 1.0);
         }
     </script>
@@ -204,7 +202,7 @@
         mat4.rotateY(mvMatrix, mvMatrix, dt / 1000);
         mat4.rotateZ(mvMatrix, mvMatrix, dt / 1000);
 
-        gl.clearColor(0.0, 0.0, 0.0, 1.0);
+        gl.clearColor(1.0, 1.0, 1.0, 1.0);
         gl.enable(gl.DEPTH_TEST);
 
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
